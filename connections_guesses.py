@@ -1,4 +1,4 @@
-'''' Function that returns how many ways to choose r items from the first '''
+'''' Function that returns how many ways to choose r items from the list '''
 def combinations(items, r):
     if r == 0:
         return [[]]
@@ -10,12 +10,12 @@ def combinations(items, r):
 
 
 
-''' Function that calculates how many guesses are needed to guarantee 
-finding all categories in the worst-case of guessing '''
-def guesses_needed(categories, words_per_category, solved=0):
-    m, k = words_per_category, categories - solved
-    if k <= 1:
-        return 0
-
-    def partitions(pool):
-        pass
+''' Function that returns how many ways to split the words into groups
+of given size. '''
+def all_groupings(words, size):
+    if not words:
+        return [frozenset()]
+    first, rest = words[0], words[1:]
+    result = []
+    for others in combinations(rest, size - 1):
+        group = frozenset([first] + others)
